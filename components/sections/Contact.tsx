@@ -18,13 +18,13 @@ type Status = 'idle' | 'loading' | 'success' | 'error'
 export function Contact() {
   const [status, setStatus] = useState<Status>('idle')
   const confettiRef = useRef<ConfettiRef>(null)
-  
+
   const containerRef = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   })
-  
+
   const yCookie = useTransform(scrollYProgress, [0, 1], [300, -300])
   const rotateCookie = useTransform(scrollYProgress, [0, 1], [-15, 25])
 
@@ -68,16 +68,16 @@ export function Contact() {
       />
 
       {/* 3D Parallax Object */}
-      <motion.div 
+      <motion.div
         className="absolute bottom-[10%] right-[-5%] md:right-[2%] z-0 pointer-events-none opacity-100"
         style={{ y: yCookie, rotate: rotateCookie }}
       >
         <div className="relative w-[140px] h-[140px] md:w-[450px] md:h-[450px]">
-          <Image 
-            src="/images/ciastka.png" 
-            alt="Cookies" 
+          <Image
+            src="/images/ciastka.png"
+            alt="Cookies"
             fill
-            className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)]" 
+            className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
           />
         </div>
       </motion.div>
@@ -92,7 +92,7 @@ export function Contact() {
         >
           {/* Form — 60% */}
           <div className="lg:col-span-3">
-            <h2 
+            <h2
               className="text-5xl md:text-7xl font-black text-[var(--color-foreground)] mb-4"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
@@ -111,7 +111,7 @@ export function Contact() {
                   className="bg-white rounded-[3rem] p-12 text-center shadow-2xl"
                 >
                   <div className="text-6xl mb-4 text-[var(--color-accent)] transform hover:scale-125 transition-transform cursor-pointer">✦</div>
-                  <h3 
+                  <h3
                     className="text-3xl font-black text-[#1946CA] mb-2"
                     style={{ fontFamily: 'var(--font-heading)' }}
                   >
@@ -238,11 +238,11 @@ export function Contact() {
                 E-mail
               </p>
               <a
-                href="mailto:kontakt@starvend.pl"
+                href="mailto:kontakt@starvent.pl"
                 className="text-2xl font-black text-white hover:text-[var(--color-accent)] transition-colors inline-block transform hover:scale-105 duration-200"
                 style={{ fontFamily: 'var(--font-heading)' }}
               >
-                kontakt@starvend.pl
+                kontakt@starvent.pl
               </a>
             </div>
 
