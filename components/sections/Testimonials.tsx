@@ -1,8 +1,11 @@
 // HIDDEN: Uncomment when real testimonials are provided by client
 // See spec: docs/superpowers/specs/2026-03-22-starvend-website-design.md section 4.6
+// To restore: (1) uncomment block below, (2) add 'use client' directive at top of file, (3) remove stub export
 
 /*
-'use client'
+Required imports when restoring:
+  'use client'
+  import { TestimonialsColumns } from '@/components/blocks/testimonials-columns-1'
 
 const testimonials = [
   {
@@ -35,6 +38,7 @@ export function Testimonials() {
 }
 */
 
+// TODO: remove this stub when uncommenting the block above
 export function Testimonials() {
   return null
 }

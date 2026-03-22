@@ -5,7 +5,7 @@ import { motion, useInView } from 'framer-motion'
 import NumberFlow from '@number-flow/react'
 
 function AnimatedStat({ value, suffix, label }: { value: number; suffix: string; label: string }) {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
   return (
     <div ref={ref} className="flex flex-col">
