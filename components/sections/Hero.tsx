@@ -108,7 +108,7 @@ export function Hero() {
             className="rounded-full font-semibold px-8"
             style={{
               backgroundColor: 'var(--color-accent)',
-              color: '#0C0C0F',
+              color: 'var(--color-background)',
             }}
           >
             Zapytaj o wycenę

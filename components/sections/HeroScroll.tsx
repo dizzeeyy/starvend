@@ -4,7 +4,7 @@ import { ContainerScroll } from '@/components/ui/container-scroll-animation'
 
 export function HeroScroll() {
   return (
-    <section style={{ backgroundColor: '#0C0C0F' }}>
+    <section style={{ backgroundColor: 'var(--color-background)' }}>
       <ContainerScroll
         titleComponent={
           <h2

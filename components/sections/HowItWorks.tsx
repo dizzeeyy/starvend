@@ -54,7 +54,7 @@ export function HowItWorks() {
         <div className="relative">
           {/* Desktop connector line */}
           <div
-            className="hidden md:block absolute top-8 left-0 right-0 h-px"
+            className="hidden md:block absolute left-0 right-0 h-px"
             style={{
               backgroundColor: 'var(--color-border)',
               top: '2rem',
