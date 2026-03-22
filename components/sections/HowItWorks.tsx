@@ -1,6 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import Image from 'next/image'
 
 const steps = [
   {
@@ -30,24 +32,49 @@ const steps = [
 ]
 
 export function HowItWorks() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  })
+  
+  const yChips = useTransform(scrollYProgress, [0, 1], [300, -300])
+  const rotateChips = useTransform(scrollYProgress, [0, 1], [-25, 25])
+
   return (
     <section
       id="jak-to-dziala"
-      className="relative py-24 md:py-32 px-6 md:px-8"
+      ref={containerRef}
+      className="relative py-24 md:py-32 px-6 md:px-8 overflow-hidden"
       style={{ backgroundColor: 'var(--color-surface-1)' }}
     >
-      <div className="container mx-auto max-w-6xl">
+      {/* 3D Background Floating Elements */}
+      <motion.div 
+        className="absolute top-[30%] right-[-5%] md:right-[2%] z-0 pointer-events-none opacity-100"
+        style={{ y: yChips, rotate: rotateChips }}
+      >
+        <div className="relative w-[160px] h-[160px] md:w-[650px] md:h-[650px]">
+          <Image 
+            src="/images/lays.png"
+            alt="Lays Snacks"
+            fill
+            className="object-contain drop-shadow-2xl"
+          />
+        </div>
+      </motion.div>
+
+      <div className="container mx-auto max-w-6xl relative z-10">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center font-bold tracking-tight mb-16 md:mb-24"
-          style={{ fontSize: 'clamp(32px, 4vw, 56px)' }}
+          className="text-center font-black tracking-tight mb-16 md:mb-24"
+          style={{ fontSize: 'clamp(40px, 5vw, 64px)', fontFamily: 'var(--font-heading)' }}
         >
           <span style={{ color: 'var(--color-foreground)' }}>Jak to działa</span>
-          <span style={{ color: 'var(--color-accent)' }}>?</span>
+          <span className="text-[var(--color-accent)] inline-block">?</span>
         </motion.h2>
 
         {/* Steps grid */}
@@ -75,10 +102,11 @@ export function HowItWorks() {
               >
                 {/* Step number */}
                 <div
-                  className="font-mono font-bold text-5xl md:text-6xl mb-4 relative z-10"
+                  className="font-black text-6xl md:text-8xl mb-6 relative z-10"
                   style={{
                     color: 'var(--color-accent)',
                     lineHeight: 1,
+                    fontFamily: 'var(--font-heading)'
                   }}
                 >
                   {step.number}
@@ -86,17 +114,17 @@ export function HowItWorks() {
 
                 {/* Dot on the line (desktop) */}
                 <div
-                  className="hidden md:block absolute top-[2rem] left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 z-20"
+                  className="hidden md:block absolute top-[2.5rem] left-1/2 -translate-x-1/2 w-6 h-6 rounded-full border-4 z-20"
                   style={{
                     backgroundColor: 'var(--color-accent)',
                     borderColor: 'var(--color-surface-1)',
-                    marginTop: '-0.375rem',
+                    marginTop: '-0.75rem',
                   }}
                 />
 
                 <h3
-                  className="text-lg font-semibold mb-2 mt-2"
-                  style={{ color: 'var(--color-foreground)' }}
+                  className="text-2xl font-bold mb-3 mt-4"
+                  style={{ color: 'var(--color-foreground)', fontFamily: 'var(--font-heading)' }}
                 >
                   {step.title}
                 </h3>

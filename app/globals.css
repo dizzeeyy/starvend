@@ -5,16 +5,16 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-background: #0C0C0F;
-  --color-surface-1: #141418;
-  --color-surface-2: #1C1C22;
-  --color-accent: #C8F135;
-  --color-foreground: #F0EFE9;
-  --color-muted: #8A8A9A;
-  --color-border: #2A2A35;
+  --color-background: #1946CA;
+  --color-surface-1: #2B5AF7;
+  --color-surface-2: #406BF9;
+  --color-accent: #FFD200;
+  --color-foreground: #FFFFFF;
+  --color-muted: #8EA8FF;
+  --color-border: #406BF9;
 
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-nunito), ui-monospace, monospace;
 }
 
 @layer base {
@@ -39,23 +39,31 @@
     @apply bg-background text-foreground;
   }
 
-  /* Grain texture overlay — z-index 10 stays below navbar, confetti, sheets */
+/* Milkies doesn't use grain, it uses completely solid, clean vibrant colors. */
   body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 10;
-    opacity: 0.02;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 128px 128px;
+    display: none;
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px rgba(200, 241, 53, 0.5), 0 0 40px rgba(200, 241, 53, 0.2);
+  }
+
+  .glow-box {
+    box-shadow: 0 0 30px rgba(200, 241, 53, 0.1), inset 0 0 20px rgba(200, 241, 53, 0.05);
+    border: 1px solid rgba(200, 241, 53, 0.2);
+  }
+
+  .glass-panel {
+    background: rgba(20, 20, 24, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
 }
 
 @theme inline {
-  --font-heading: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-fredoka), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -110,70 +118,46 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --background: oklch(0.42 0.22 260); /* Vibrant Blue ~ #1946CA */
+  --foreground: oklch(1 0 0); /* White */
+  --card: oklch(0.5 0.22 260); /* Lighter Blue */
+  --card-foreground: oklch(1 0 0);
+  --popover: oklch(0.5 0.22 260);
+  --popover-foreground: oklch(1 0 0);
+  --primary: oklch(0.85 0.2 90); /* Yellow ~ #FFD200 */
+  --primary-foreground: oklch(0.42 0.22 260);
+  --secondary: oklch(0.56 0.22 260); /* Lightest Blue */
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.56 0.22 260);
+  --muted-foreground: oklch(0.8 0.1 260);
+  --accent: oklch(0.85 0.2 90);
+  --accent-foreground: oklch(0.42 0.22 260);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --border: oklch(0.56 0.22 260);
+  --input: oklch(0.56 0.22 260);
+  --ring: oklch(0.85 0.2 90);
+  --radius: 1.5rem; /* Milkies loves huge rounded corners */
 }
 
+/* We force the same variables on .dark since we are adopting a single solid vibrant theme */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: oklch(0.42 0.22 260);
+  --foreground: oklch(1 0 0);
+  --card: oklch(0.5 0.22 260);
+  --card-foreground: oklch(1 0 0);
+  --popover: oklch(0.5 0.22 260);
+  --popover-foreground: oklch(1 0 0);
+  --primary: oklch(0.85 0.2 90);
+  --primary-foreground: oklch(0.42 0.22 260);
+  --secondary: oklch(0.56 0.22 260);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.56 0.22 260);
+  --muted-foreground: oklch(0.8 0.1 260);
+  --accent: oklch(0.85 0.2 90);
+  --accent-foreground: oklch(0.42 0.22 260);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.56 0.22 260);
+  --input: oklch(0.56 0.22 260);
+  --ring: oklch(0.85 0.2 90);
+  --radius: 1.5rem;
 }

@@ -1,6 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import Image from 'next/image'
 import {
   Accordion,
   AccordionContent,
@@ -36,17 +38,42 @@ const faqs = [
 ]
 
 export function FAQ() {
+  const containerRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  })
+  
+  const yBaton = useTransform(scrollYProgress, [0, 1], [350, -350])
+  const rotateBaton = useTransform(scrollYProgress, [0, 1], [-20, 30])
+
   return (
-    <section id="faq" className="bg-[var(--color-background)] py-24 px-4">
-      <div className="max-w-3xl mx-auto">
+    <section id="faq" ref={containerRef} className="bg-[var(--color-background)] py-24 px-4 scroll-mt-24 relative overflow-hidden">
+      {/* 3D Parallax Object */}
+      <motion.div 
+        className="absolute top-[30%] left-[-5%] md:left-[2%] z-0 pointer-events-none opacity-100"
+        style={{ y: yBaton, rotate: rotateBaton }}
+      >
+        <div className="relative w-[140px] h-[140px] md:w-[450px] md:h-[450px]">
+          <Image 
+            src="/images/baton.png" 
+            alt="Chocolate Bar" 
+            fill 
+            className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)]" 
+          />
+        </div>
+      </motion.div>
+
+      <div className="max-w-3xl mx-auto relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-5xl font-black text-[var(--color-foreground)] mb-16"
+          className="text-center text-5xl md:text-7xl font-black text-white mb-16 shadow-none"
+          style={{ fontFamily: 'var(--font-heading)' }}
         >
-          FAQ<span className="text-[var(--color-accent)]"> ✦</span>
+          Masz pytania<span className="text-[var(--color-accent)] inline-block transform hover:scale-110 transition-transform cursor-pointer">?</span>
         </motion.h2>
 
         <Accordion type="single" collapsible className="space-y-2">
@@ -60,12 +87,12 @@ export function FAQ() {
             >
               <AccordionItem
                 value={`item-${i}`}
-                className="border border-[var(--color-border)] rounded-xl px-6 bg-[var(--color-surface-1)]"
+                className="border-none bg-[var(--color-surface-1)] rounded-[2rem] mb-4 overflow-hidden transition-transform hover:-translate-y-1 hover:bg-[var(--color-surface-2)]"
               >
-                <AccordionTrigger className="text-[var(--color-foreground)] font-semibold hover:text-[var(--color-accent)] transition-colors text-left py-5">
+                <AccordionTrigger className="text-white font-black text-left px-8 py-6 text-xl w-full border-none data-[state=open]:text-[var(--color-accent)] transition-colors hover:no-underline" style={{ fontFamily: 'var(--font-heading)' }}>
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-[var(--color-muted)] leading-relaxed pb-5">
+                <AccordionContent className="text-white/90 font-bold leading-relaxed px-8 pb-6 text-lg font-sans">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

@@ -1,22 +1,8 @@
 'use client'
 
 import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
-import NumberFlow from '@number-flow/react'
-
-function AnimatedStat({ value, suffix, label }: { value: number; suffix: string; label: string }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-80px' })
-  return (
-    <div ref={ref} className="flex flex-col">
-      <div className="text-5xl md:text-6xl font-black text-[#0C0C0F] font-mono flex items-baseline gap-0.5">
-        <NumberFlow value={isInView ? value : 0} />
-        <span>{suffix}</span>
-      </div>
-      <span className="text-sm text-[#0C0C0F]/70 mt-1 font-medium">{label}</span>
-    </div>
-  )
-}
+import { motion, useScroll, useTransform } from 'framer-motion'
+import Image from 'next/image'
 
 const features = [
   {
@@ -45,36 +31,49 @@ const features = [
   },
 ]
 
-const stats = [
-  { value: 200, suffix: '+', label: 'zadowolonych firm' },
-  { value: 500, suffix: '+', label: 'obsługiwanych maszyn' },
-  { value: 24, suffix: 'h', label: 'czas reakcji serwisowej' },
-  { value: 0, suffix: ' zł', label: 'koszt dla klienta' },
-]
-
 export function WhyUs() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  })
+
+  // Parallax effects for 3d objects
+  const yChocolate = useTransform(scrollYProgress, [0, 1], [150, -250])
+  const rotateChocolate = useTransform(scrollYProgress, [0, 1], [-20, 30])
+
   return (
     <section
       id="dlaczego-my"
-      className="py-24 px-4"
+      ref={containerRef}
+      className="py-24 px-4 scroll-mt-24 relative overflow-hidden"
       style={{ backgroundColor: 'var(--color-accent)' }}
     >
-      <div className="max-w-6xl mx-auto">
+      {/* 3D Background Floating Elements */}
+      <motion.div
+        className="absolute top-[10%] right-[0%] md:right-[5%] z-0 pointer-events-none opacity-100"
+        style={{ y: yChocolate, rotate: rotateChocolate }}
+      >
+        <div className="relative w-[150px] h-[150px] md:w-[550px] md:h-[550px]">
+          <Image
+            src="/images/doritos.png"
+            alt="Doritos Chips"
+            fill
+            className="object-contain drop-shadow-2xl"
+          />
+        </div>
+      </motion.div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-4xl md:text-5xl font-black text-[#0C0C0F] mb-16"
+          transition={{ duration: 0.6 }}
+          className="text-center text-4xl md:text-6xl font-black text-[var(--color-secondary)] mb-16"
         >
-          Dlaczego Starvend<span>?</span>
+          Dlaczego <span style={{ fontFamily: 'var(--font-fredoka)' }}>StarVend<span className="text-[var(--color-white)]">✦</span></span> ?
         </motion.h2>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
-          {stats.map((stat) => (
-            <AnimatedStat key={stat.label} {...stat} />
-          ))}
-        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, i) => (
@@ -83,12 +82,15 @@ export function WhyUs() {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
-              className="bg-[#0C0C0F]/10 backdrop-blur-sm border border-[#0C0C0F]/20 rounded-xl p-6"
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="bg-white rounded-[2rem] p-8 min-h-[220px] transition-transform hover:-translate-y-2 shadow-[0_10px_30px_rgba(0,0,0,0.05)]"
             >
-              <span className="text-[#0C0C0F] font-black text-lg mb-3 block">✦</span>
-              <h3 className="font-bold text-[#0C0C0F] text-base mb-2">{feature.title}</h3>
-              <p className="text-[#0C0C0F]/70 text-sm leading-relaxed">{feature.description}</p>
+              <h3 className="text-2xl font-black mb-3 text-[#1946CA]" style={{ fontFamily: 'var(--font-heading)' }}>
+                {feature.title}
+              </h3>
+              <p className="text-gray-600 font-bold">
+                {feature.description}
+              </p>
             </motion.div>
           ))}
         </div>

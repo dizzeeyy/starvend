@@ -1,7 +1,12 @@
 import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
+import { Baloo_2, Nunito, Fredoka } from 'next/font/google'
+import { BackToTop } from '@/components/ui/back-to-top'
 import './globals.css'
+
+const fredoka = Fredoka({ subsets: ['latin'], variable: '--font-fredoka', weight: ['400', '600', '700'] })
+
+const baloo = Baloo_2({ subsets: ['latin', 'latin-ext'], variable: '--font-heading', weight: ['400', '500', '600', '700', '800'] })
+const nunito = Nunito({ subsets: ['latin', 'latin-ext'], variable: '--font-nunito', weight: ['400', '600', '700', '800', '900'] })
 
 export const metadata: Metadata = {
   title: 'Starvend — Automaty vendingowe dla firm | Montaż i serwis',
@@ -20,8 +25,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pl" className={`${GeistSans.variable} ${GeistMono.variable} dark`}>
-      <body>{children}</body>
+    <html lang="pl" className={`${baloo.variable} ${nunito.variable} ${fredoka.variable}`}>
+      <body className="cursor-default font-sans antialiased">
+        {children}
+        <BackToTop />
+      </body>
     </html>
   )
 }

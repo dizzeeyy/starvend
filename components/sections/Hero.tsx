@@ -1,131 +1,190 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { ParticleButton } from '@/components/ui/particle-button'
-import { LiquidButton } from '@/components/ui/liquid-glass-button'
 
 export function Hero() {
-  const handleScrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   return (
     <section
-      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden"
-      style={{ backgroundColor: 'var(--color-background)' }}
+      className="relative min-h-[95vh] w-full flex items-center justify-center overflow-hidden bg-[var(--color-background)] pt-20 pb-10"
     >
-      {/* Atmospheric gradient orbs — designed for dark bg */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.6, scale: 1 }}
-          transition={{ duration: 3, delay: 0.2 }}
-          className="absolute rounded-full"
-          style={{
-            left: '-8%', top: '10%',
-            width: 500, height: 500,
-            background: 'radial-gradient(circle, rgba(200,241,53,0.15) 0%, transparent 70%)',
-          }}
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.5, scale: 1 }}
-          transition={{ duration: 3, delay: 0.5 }}
-          className="absolute rounded-full"
-          style={{
-            right: '-6%', top: '15%',
-            width: 420, height: 420,
-            background: 'radial-gradient(circle, rgba(100,180,255,0.1) 0%, transparent 70%)',
-          }}
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.4, scale: 1 }}
-          transition={{ duration: 3, delay: 0.8 }}
-          className="absolute rounded-full"
-          style={{
-            right: '8%', bottom: '10%',
-            width: 350, height: 350,
-            background: 'radial-gradient(circle, rgba(200,241,53,0.1) 0%, transparent 70%)',
-          }}
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.35, scale: 1 }}
-          transition={{ duration: 3, delay: 1.0 }}
-          className="absolute rounded-full"
-          style={{
-            left: '10%', bottom: '15%',
-            width: 280, height: 280,
-            background: 'radial-gradient(circle, rgba(180,80,255,0.08) 0%, transparent 70%)',
-          }}
-        />
-      </div>
+      {/* Background Graphic Elements - Floating Snacks */}
+      <motion.div 
+        className="absolute top-[10%] left-[8%] w-[80px] h-[80px] md:w-[150px] md:h-[150px] opacity-100 z-0"
+        animate={{ y: [0, -20, 0], rotate: [0, 15, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Image src="/images/coke.png" alt="Coke" fill className="object-contain drop-shadow-2xl" />
+      </motion.div>
+      <motion.div 
+        className="absolute bottom-[20%] right-[8%] w-[90px] h-[90px] md:w-[160px] md:h-[160px] opacity-100 z-0"
+        animate={{ y: [0, 25, 0], rotate: [0, -20, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      >
+        <Image src="/images/dr pepper.png" alt="Dr Pepper" fill className="object-contain drop-shadow-2xl" />
+      </motion.div>
+      <motion.div 
+        className="absolute top-[25%] right-[12%] w-[70px] h-[70px] md:w-[120px] md:h-[120px] opacity-100 z-0"
+        animate={{ y: [0, -15, 0], rotate: [-10, 10, -10] }}
+        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+      >
+        <Image src="/images/mms.png" alt="M&Ms" fill className="object-contain drop-shadow-2xl" />
+      </motion.div>
+      <motion.div 
+        className="absolute top-[60%] left-[5%] w-[40px] h-[40px] md:w-[140px] md:h-[140px] opacity-100 z-0"
+        animate={{ y: [0, 20, 0], rotate: [-15, 5, -15] }}
+        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+      >
+        <Image src="/images/ciastka.png" alt="Ciastka" fill className="object-contain drop-shadow-2xl" />
+      </motion.div>
+      <motion.div 
+        className="absolute bottom-[10%] left-[20%] w-[50px] h-[50px] md:w-[180px] md:h-[180px] opacity-100 z-0"
+        animate={{ y: [0, -25, 0], rotate: [20, -10, 20] }}
+        transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+      >
+        <Image src="/images/baton.png" alt="Baton" fill className="object-contain drop-shadow-2xl" />
+      </motion.div>
 
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 md:px-8 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
-          className="font-bold tracking-tight mb-6"
-          style={{ fontSize: 'clamp(48px, 7vw, 96px)', lineHeight: 1.05 }}
-        >
-          <span style={{ color: 'var(--color-foreground)' }}>
-            Maszyna vendingowa
-          </span>
-          <br />
-          <span style={{ color: 'var(--color-accent)' }}>
-            w Twojej firmie.
-          </span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-          className="text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
-          style={{ color: 'var(--color-muted)' }}
-        >
-          Montaż, serwis i uzupełnianie w jednym pakiecie — bezpłatnie.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <ParticleButton
-            size="lg"
-            onClick={() => handleScrollTo('kontakt')}
-            className="rounded-full font-semibold px-8"
-            style={{
-              backgroundColor: 'var(--color-accent)',
-              color: 'var(--color-background)',
+      <div className="relative z-10 container mx-auto px-4 text-center h-full flex flex-col items-center justify-center">
+        
+        {/* Massive Bubbly Typography Background Layer */}
+        <div className="relative w-full max-w-5xl mx-auto flex items-center justify-center h-[300px] md:h-[450px]">
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring", bounce: 0.5, duration: 1 }}
+            className="absolute left-0 md:-left-10 text-white font-black tracking-tight"
+            style={{ 
+              fontSize: 'clamp(80px, 15vw, 220px)',
+              lineHeight: 0.8,
+              textShadow: '0px 10px 30px rgba(0,0,0,0.15)',
+              zIndex: 5,
+              fontFamily: 'var(--font-fredoka)'
             }}
           >
-            Zapytaj o wycenę
-          </ParticleButton>
+            Star
+          </motion.h1>
 
-          <LiquidButton
-            size="lg"
-            onClick={() => handleScrollTo('jak-to-dziala')}
-            className="rounded-full font-semibold px-8"
-            style={{ color: 'var(--color-foreground)' }}
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring", bounce: 0.5, duration: 1, delay: 0.2 }}
+            className="absolute right-0 md:-right-10 text-white font-black tracking-tight"
+            style={{ 
+              fontSize: 'clamp(80px, 15vw, 220px)',
+              lineHeight: 0.8,
+              textShadow: '0px 10px 30px rgba(0,0,0,0.15)',
+              zIndex: 30,
+              fontFamily: 'var(--font-fredoka)'
+            }}
           >
-            Jak to działa →
-          </LiquidButton>
-        </motion.div>
-      </div>
+            Vend
+          </motion.h1>
 
-      {/* Bottom fade */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-        style={{
-          background: 'linear-gradient(to bottom, transparent, var(--color-background))',
-        }}
-      />
+          {/* Central Orbiting 3D Products */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+            {/* Main Machine */}
+            <motion.div
+              initial={{ y: 100, opacity: 0, rotate: -2 }}
+              animate={{ y: 0, opacity: 1, rotate: 0 }}
+              transition={{ type: "spring", bounce: 0.4, duration: 1.2, delay: 0.3 }}
+              className="relative w-[280px] h-[480px] md:w-[480px] md:h-[750px] xl:w-[600px] xl:h-[900px] mt-32"
+            >
+              <Image 
+                src="/images/machine.png" 
+                alt="Vending Machine"
+                fill
+                className="object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
+                priority
+              />
+            </motion.div>
+            
+            {/* Floating Doritos */}
+            <motion.div
+              initial={{ x: -100, y: -50, opacity: 0, rotate: -45 }}
+              animate={{ x: -200, y: -120, opacity: 1, rotate: 15 }}
+              transition={{ type: "spring", duration: 1.5, delay: 0.6 }}
+              className="absolute w-[80px] h-[80px] md:w-[280px] md:h-[280px]"
+            >
+               <motion.div animate={{ y: [0, -15, 0], rotate: [15, 25, 15] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
+                 <Image 
+                   src="/images/doritos.png" 
+                   alt="Doritos"
+                   fill
+                   className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+                 />
+               </motion.div>
+            </motion.div>
+
+            {/* Floating Oreo */}
+            <motion.div
+              initial={{ x: 100, y: 50, opacity: 0, rotate: 45 }}
+              animate={{ x: 250, y: 100, opacity: 1, rotate: -20 }}
+              transition={{ type: "spring", duration: 1.5, delay: 0.5 }}
+              className="absolute w-[90px] h-[90px] md:w-[320px] md:h-[320px]"
+            >
+               <motion.div animate={{ y: [0, 20, 0], rotate: [-20, -10, -20] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
+                 <Image 
+                   src="/images/oreo.png" 
+                   alt="Oreo"
+                   fill
+                   className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+                 />
+               </motion.div>
+            </motion.div>
+
+            {/* Floating Lays */}
+            <motion.div
+              initial={{ x: -100, y: 100, opacity: 0, rotate: 0 }}
+              animate={{ x: -250, y: 180, opacity: 1, rotate: -30 }}
+              transition={{ type: "spring", duration: 1.5, delay: 0.7 }}
+              className="absolute w-[80px] h-[80px] md:w-[260px] md:h-[260px]"
+            >
+               <motion.div animate={{ y: [0, -20, 0], rotate: [-30, -40, -30] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
+                 <Image 
+                   src="/images/lays.png" 
+                   alt="Lays Snacks"
+                   fill
+                   className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+                 />
+               </motion.div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* CTA Button placed creatively overlapping the bottom elements */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: "spring", bounce: 0.5, duration: 1, delay: 0.8 }}
+          className="relative z-40 mt-10 md:mt-16"
+        >
+          <a href="#kontakt">
+            <ParticleButton
+              size="lg"
+              className="rounded-[2.5rem] font-extrabold px-12 py-8 text-2xl shadow-[0_10px_30px_rgba(255,210,0,0.3)] hover:shadow-[0_15px_40px_rgba(255,210,0,0.5)] transform hover:-translate-y-2 transition-all"
+              style={{
+                backgroundColor: 'var(--color-accent)',
+                color: 'var(--color-background)',
+                fontFamily: 'var(--font-heading)'
+              }}
+            >
+              Zapytaj o wycenę!
+            </ParticleButton>
+          </a>
+        </motion.div>
+
+        {/* Subtle scroll indicator */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 font-semibold tracking-widest text-sm uppercase"
+        >
+          Przewiń w dół
+        </motion.p>
+      </div>
     </section>
   )
 }

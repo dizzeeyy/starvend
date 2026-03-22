@@ -14,9 +14,10 @@ export function Footer() {
         <div className="flex flex-col gap-2">
           <Link
             href="/"
-            className="text-2xl font-black text-[var(--color-foreground)] tracking-tight"
+            className="text-3xl font-black text-[var(--color-accent)] tracking-tight cursor-pointer"
+            style={{ fontFamily: 'var(--font-fredoka)' }}
           >
-            STARVEND <span className="text-[var(--color-accent)]">✦</span>
+            StarVend <span className="text-[var(--color-foreground)]">✦</span>
           </Link>
           <p className="text-[var(--color-muted)] text-sm font-medium">
             Twój automat. Nasz serwis.
