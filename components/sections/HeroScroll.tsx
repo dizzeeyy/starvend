@@ -1,6 +1,9 @@
 'use client'
 
+import Image from 'next/image'
 import { ContainerScroll } from '@/components/ui/container-scroll-animation'
+
+const MACHINE_IMAGE = '/images/gwiezdnygrzesior_A_front-facing_professional_3D_render_of_a_m_6ed6da93-df86-424b-af32-af2bce23f7e9_3.png'
 
 export function HeroScroll() {
   return (
@@ -18,20 +21,19 @@ export function HeroScroll() {
           </h2>
         }
       >
-        {/* Placeholder for /images/machine.jpg */}
         <div
-          className="w-full h-full rounded-2xl flex items-center justify-center"
-          style={{
-            backgroundColor: 'var(--color-surface-1)',
-            mixBlendMode: 'screen',
-          }}
+          className="w-full h-full rounded-2xl flex items-center justify-center overflow-hidden"
+          style={{ backgroundColor: 'var(--color-background)' }}
         >
-          <span
-            className="text-6xl select-none"
-            style={{ color: 'var(--color-muted)', opacity: 0.4 }}
-          >
-            🏧
-          </span>
+          <Image
+            src={MACHINE_IMAGE}
+            alt="Automat vendingowy Starvend"
+            width={600}
+            height={900}
+            className="object-contain max-h-full w-auto"
+            style={{ mixBlendMode: 'screen' }}
+            priority
+          />
         </div>
       </ContainerScroll>
     </section>

@@ -1,8 +1,42 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ParticleButton } from '@/components/ui/particle-button'
 import { LiquidButton } from '@/components/ui/liquid-glass-button'
+
+const snacks = [
+  {
+    src: '/images/gwiezdnygrzesior_A_single_large_soft_baked_oatmeal_raisin_coo_c5532d85-78ac-4f5d-854f-15133c74ca49_1.png',
+    alt: 'Ciastko',
+    style: { top: '12%', left: '-2%', rotate: '-12deg', width: 180 },
+    delay: 0.2,
+  },
+  {
+    src: '/images/gwiezdnygrzesior_A_hyper-realistic_3D_render_of_a_glossy_foil_b438c4d4-7c7c-43bd-810b-c5996739a64a_3.png',
+    alt: 'Przekąska w folii',
+    style: { top: '18%', right: '0%', rotate: '10deg', width: 200 },
+    delay: 0.35,
+  },
+  {
+    src: '/images/gwiezdnygrzesior_A_3D_model_of_a_sleek_soda_can_condensation__46fa6700-7260-4782-92c0-73758d80c57e_2.png',
+    alt: 'Napój w puszce',
+    style: { bottom: '14%', right: '6%', rotate: '-6deg', width: 160 },
+    delay: 0.5,
+  },
+  {
+    src: '/images/gwiezdnygrzesior_A_hyper-realistic_3D_render_of_a_chocolate_c_409cd882-bc67-4f47-afda-83246829e77e_0.png',
+    alt: 'Baton czekoladowy',
+    style: { bottom: '18%', left: '12%', rotate: '16deg', width: 150 },
+    delay: 0.6,
+  },
+  {
+    src: '/images/gwiezdnygrzesior_A_3D_isometric_view_of_a_glossy_foil_potato__700c56ef-8e2c-496f-8245-ca5f647ce9a9_2.png',
+    alt: 'Chipsy',
+    style: { top: '6%', left: '28%', rotate: '-8deg', width: 130 },
+    delay: 0.7,
+  },
+]
 
 export function Hero() {
   const handleScrollTo = (id: string) => {
@@ -14,58 +48,34 @@ export function Hero() {
       className="relative min-h-screen w-full flex items-center justify-center overflow-hidden"
       style={{ backgroundColor: 'var(--color-background)' }}
     >
-      {/* Floating snack image placeholders (mix-blend-mode: screen) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          initial={{ opacity: 0, y: -80, rotate: -10 }}
-          animate={{ opacity: 0.5, y: 0, rotate: -10 }}
-          transition={{ duration: 2, delay: 0.2 }}
-          className="absolute left-[-4%] top-[15%] w-48 h-48 rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(200,241,53,0.18) 0%, transparent 70%)',
-            mixBlendMode: 'screen',
-          }}
-        />
-        <motion.div
-          initial={{ opacity: 0, y: -80, rotate: 12 }}
-          animate={{ opacity: 0.45, y: 0, rotate: 12 }}
-          transition={{ duration: 2, delay: 0.4 }}
-          className="absolute right-[-2%] top-[20%] w-56 h-56 rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(200,100,53,0.18) 0%, transparent 70%)',
-            mixBlendMode: 'screen',
-          }}
-        />
-        <motion.div
-          initial={{ opacity: 0, y: -60, rotate: -5 }}
-          animate={{ opacity: 0.4, y: 0, rotate: -5 }}
-          transition={{ duration: 2, delay: 0.5 }}
-          className="absolute right-[10%] bottom-[15%] w-40 h-40 rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(53,100,200,0.18) 0%, transparent 70%)',
-            mixBlendMode: 'screen',
-          }}
-        />
-        <motion.div
-          initial={{ opacity: 0, y: -40, rotate: 20 }}
-          animate={{ opacity: 0.35, y: 0, rotate: 20 }}
-          transition={{ duration: 2, delay: 0.6 }}
-          className="absolute left-[15%] bottom-[20%] w-32 h-32 rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(200,53,53,0.15) 0%, transparent 70%)',
-            mixBlendMode: 'screen',
-          }}
-        />
-        <motion.div
-          initial={{ opacity: 0, y: -60, rotate: -15 }}
-          animate={{ opacity: 0.3, y: 0, rotate: -15 }}
-          transition={{ duration: 2, delay: 0.7 }}
-          className="absolute left-[30%] top-[8%] w-28 h-28 rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(180,140,53,0.15) 0%, transparent 70%)',
-            mixBlendMode: 'screen',
-          }}
-        />
+      {/* Floating snack images (mix-blend-mode: screen — white bg disappears on dark surface) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+        {snacks.map((snack) => (
+          <motion.div
+            key={snack.src}
+            initial={{ opacity: 0, y: -60 }}
+            animate={{ opacity: 0.9, y: 0 }}
+            transition={{ duration: 1.6, delay: snack.delay, ease: 'easeOut' }}
+            className="absolute"
+            style={{
+              top: snack.style.top,
+              left: snack.style.left,
+              right: snack.style.right,
+              bottom: snack.style.bottom,
+              rotate: snack.style.rotate,
+              mixBlendMode: 'screen',
+            }}
+          >
+            <Image
+              src={snack.src}
+              alt={snack.alt}
+              width={snack.style.width}
+              height={snack.style.width}
+              className="object-contain"
+              draggable={false}
+            />
+          </motion.div>
+        ))}
       </div>
 
       {/* Content */}
