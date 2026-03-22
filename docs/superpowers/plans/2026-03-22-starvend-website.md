@@ -625,8 +625,8 @@ export async function POST(request: Request) {
   const { name, company, email, phone, message } = parsed.data
 
   const { error } = await resend.emails.send({
-    from: 'Starvend <formularz@starvend.pl>',
-    to: ['kontakt@starvend.pl'],
+    from: 'Starvend <formularz@starvent.pl>',
+    to: ['kontakt@starvent.pl'],
     replyTo: email,
     subject: `Nowe zapytanie od ${name} — ${company}`,
     text: [
@@ -1747,10 +1747,10 @@ export function Contact() {
                 E-mail
               </p>
               <a
-                href="mailto:kontakt@starvend.pl"
+                href="mailto:kontakt@starvent.pl"
                 className="text-xl font-bold text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
               >
-                kontakt@starvend.pl
+                kontakt@starvent.pl
               </a>
             </div>
 
@@ -2094,14 +2094,14 @@ git commit -m "chore: add Vercel project config"
 
 ### 🔴 BLOCKING — must be done before contact form works in production
 
-- [ ] **Verify Resend sender domain** (`starvend.pl`) in the Resend dashboard → DNS → add required TXT/DKIM records. Without this, every contact form submission returns 500 and no email is sent.
-- [ ] Replace `kontakt@starvend.pl` in Resend `to:` address in `app/api/contact/route.ts` with the real inbox
-- [ ] Replace `formularz@starvend.pl` in Resend `from:` field with a verified sender address on the verified domain
+- [ ] **Verify Resend sender domain** (`starvent.pl`) in the Resend dashboard → DNS → add required TXT/DKIM records. Without this, every contact form submission returns 500 and no email is sent.
+- [ ] Replace `kontakt@starvent.pl` in Resend `to:` address in `app/api/contact/route.ts` with the real inbox
+- [ ] Replace `formularz@starvent.pl` in Resend `from:` field with a verified sender address on the verified domain
 
 ### 🟡 Required before launch (content placeholders)
 
 - [ ] Replace `+48 000 000 000` placeholder phone in `components/sections/Contact.tsx`
-- [ ] Replace `kontakt@starvend.pl` placeholder email shown to visitors in `components/sections/Contact.tsx`
+- [ ] Replace `kontakt@starvent.pl` placeholder email shown to visitors in `components/sections/Contact.tsx`
 - [ ] Replace `Obsługujemy województwo X i Y` with real service area
 - [ ] Confirm or adjust animated statistics (`200+`, `500+`, `24h`) in `components/sections/WhyUs.tsx`
 

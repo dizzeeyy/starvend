@@ -222,7 +222,7 @@ Cała strona jest generowana statycznie (SSG). Jedynym dynamicznym elementem jes
 
 **Dane boczne:**
 - 📞 Numer telefonu — *do uzupełnienia przez klienta przed go-live; developer używa placeholdera `+48 000 000 000`*
-- ✉️ Adres e-mail — *do uzupełnienia przez klienta przed go-live; developer używa placeholdera `kontakt@starvend.pl`*
+- ✉️ Adres e-mail — *do uzupełnienia przez klienta przed go-live; developer używa placeholdera `kontakt@starvent.pl`*
 - 📍 Obszar działania — *do uzupełnienia przez klienta; np. "Obsługujemy województwo X i Y"*
 
 ---
