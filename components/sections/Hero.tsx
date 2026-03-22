@@ -1,42 +1,8 @@
 'use client'
 
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ParticleButton } from '@/components/ui/particle-button'
 import { LiquidButton } from '@/components/ui/liquid-glass-button'
-
-const snacks = [
-  {
-    src: '/images/gwiezdnygrzesior_A_single_large_soft_baked_oatmeal_raisin_coo_c5532d85-78ac-4f5d-854f-15133c74ca49_1.png',
-    alt: 'Ciastko',
-    style: { top: '12%', left: '-2%', rotate: '-12deg', width: 180 },
-    delay: 0.2,
-  },
-  {
-    src: '/images/gwiezdnygrzesior_A_hyper-realistic_3D_render_of_a_glossy_foil_b438c4d4-7c7c-43bd-810b-c5996739a64a_3.png',
-    alt: 'Przekąska w folii',
-    style: { top: '18%', right: '0%', rotate: '10deg', width: 200 },
-    delay: 0.35,
-  },
-  {
-    src: '/images/gwiezdnygrzesior_A_3D_model_of_a_sleek_soda_can_condensation__46fa6700-7260-4782-92c0-73758d80c57e_2.png',
-    alt: 'Napój w puszce',
-    style: { bottom: '14%', right: '6%', rotate: '-6deg', width: 160 },
-    delay: 0.5,
-  },
-  {
-    src: '/images/gwiezdnygrzesior_A_hyper-realistic_3D_render_of_a_chocolate_c_409cd882-bc67-4f47-afda-83246829e77e_0.png',
-    alt: 'Baton czekoladowy',
-    style: { bottom: '18%', left: '12%', rotate: '16deg', width: 150 },
-    delay: 0.6,
-  },
-  {
-    src: '/images/gwiezdnygrzesior_A_3D_isometric_view_of_a_glossy_foil_potato__700c56ef-8e2c-496f-8245-ca5f647ce9a9_2.png',
-    alt: 'Chipsy',
-    style: { top: '6%', left: '28%', rotate: '-8deg', width: 130 },
-    delay: 0.7,
-  },
-]
 
 export function Hero() {
   const handleScrollTo = (id: string) => {
@@ -48,34 +14,52 @@ export function Hero() {
       className="relative min-h-screen w-full flex items-center justify-center overflow-hidden"
       style={{ backgroundColor: 'var(--color-background)' }}
     >
-      {/* Floating snack images (mix-blend-mode: screen — white bg disappears on dark surface) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
-        {snacks.map((snack) => (
-          <motion.div
-            key={snack.src}
-            initial={{ opacity: 0, y: -60 }}
-            animate={{ opacity: 0.9, y: 0 }}
-            transition={{ duration: 1.6, delay: snack.delay, ease: 'easeOut' }}
-            className="absolute"
-            style={{
-              top: snack.style.top,
-              left: snack.style.left,
-              right: snack.style.right,
-              bottom: snack.style.bottom,
-              rotate: snack.style.rotate,
-              mixBlendMode: 'screen',
-            }}
-          >
-            <Image
-              src={snack.src}
-              alt={snack.alt}
-              width={snack.style.width}
-              height={snack.style.width}
-              className="object-contain"
-              draggable={false}
-            />
-          </motion.div>
-        ))}
+      {/* Atmospheric gradient orbs — designed for dark bg */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.6, scale: 1 }}
+          transition={{ duration: 3, delay: 0.2 }}
+          className="absolute rounded-full"
+          style={{
+            left: '-8%', top: '10%',
+            width: 500, height: 500,
+            background: 'radial-gradient(circle, rgba(200,241,53,0.15) 0%, transparent 70%)',
+          }}
+        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.5, scale: 1 }}
+          transition={{ duration: 3, delay: 0.5 }}
+          className="absolute rounded-full"
+          style={{
+            right: '-6%', top: '15%',
+            width: 420, height: 420,
+            background: 'radial-gradient(circle, rgba(100,180,255,0.1) 0%, transparent 70%)',
+          }}
+        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.4, scale: 1 }}
+          transition={{ duration: 3, delay: 0.8 }}
+          className="absolute rounded-full"
+          style={{
+            right: '8%', bottom: '10%',
+            width: 350, height: 350,
+            background: 'radial-gradient(circle, rgba(200,241,53,0.1) 0%, transparent 70%)',
+          }}
+        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.35, scale: 1 }}
+          transition={{ duration: 3, delay: 1.0 }}
+          className="absolute rounded-full"
+          style={{
+            left: '10%', bottom: '15%',
+            width: 280, height: 280,
+            background: 'radial-gradient(circle, rgba(180,80,255,0.08) 0%, transparent 70%)',
+          }}
+        />
       </div>
 
       {/* Content */}
@@ -83,9 +67,9 @@ export function Hero() {
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
+          transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
           className="font-bold tracking-tight mb-6"
-          style={{ fontSize: 'clamp(52px, 8vw, 100px)', lineHeight: 1.05 }}
+          style={{ fontSize: 'clamp(48px, 7vw, 96px)', lineHeight: 1.05 }}
         >
           <span style={{ color: 'var(--color-foreground)' }}>
             Maszyna vendingowa
@@ -99,7 +83,7 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
+          transition={{ duration: 0.9, delay: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
           className="text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
           style={{ color: 'var(--color-muted)' }}
         >
@@ -109,7 +93,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.9, ease: [0.25, 0.4, 0.25, 1] }}
+          transition={{ duration: 0.9, delay: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <ParticleButton

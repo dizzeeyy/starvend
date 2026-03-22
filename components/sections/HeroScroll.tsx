@@ -12,7 +12,7 @@ export function HeroScroll() {
         titleComponent={
           <h2
             className="font-bold tracking-tight text-center mb-4"
-            style={{ fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: 1.1 }}
+            style={{ fontSize: 'clamp(32px, 4.5vw, 58px)', lineHeight: 1.15 }}
           >
             <span style={{ color: 'var(--color-foreground)' }}>
               Twój automat.{' '}
@@ -21,17 +21,17 @@ export function HeroScroll() {
           </h2>
         }
       >
+        {/* White background — machine photo looks like a product catalog page */}
         <div
-          className="w-full h-full rounded-2xl flex items-center justify-center overflow-hidden"
-          style={{ backgroundColor: 'var(--color-background)' }}
+          className="w-full h-full flex items-center justify-center"
+          style={{ backgroundColor: '#F8F8F6' }}
         >
           <Image
             src={MACHINE_IMAGE}
             alt="Automat vendingowy Starvend"
-            width={600}
-            height={900}
+            width={480}
+            height={720}
             className="object-contain max-h-full w-auto"
-            style={{ mixBlendMode: 'screen' }}
             priority
           />
         </div>
