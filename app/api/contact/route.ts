@@ -24,7 +24,7 @@ export async function POST(request: Request) {
   const { error } = await resend.emails.send({
     from: 'Starvend <formularz@starvend.pl>',
     to: ['kontakt@starvend.pl'],
-    replyTo: email,
+    reply_to: email,
     subject: `Nowe zapytanie od ${name} — ${company}`,
     text: [
       `Imię i nazwisko: ${name}`,
